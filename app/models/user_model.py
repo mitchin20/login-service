@@ -13,5 +13,3 @@ class User(Base):
     password = Column(String) # encrypted password
     role = Column(String(50), index=True)
     isActive = Column(Boolean, index=True)
-    updated_at = Column(TIMESTAMP(timezone=True), default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
-    created_at = Column(TIMESTAMP(timezone=True), default=datetime.now(timezone.utc))
