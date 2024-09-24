@@ -1,7 +1,5 @@
-from sqlalchemy import Column, Integer, String, Boolean, TIMESTAMP
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Column, Integer, String, Boolean
 from app.db.postgres_database import Base
-from datetime import datetime, timezone
 
 class User(Base):
     __tablename__ = "User"
