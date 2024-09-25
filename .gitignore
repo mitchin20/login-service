@@ -2,7 +2,7 @@ venv/
 __pycache__/
 .env
 .DS_Store
-notes.txt
+/notes
 test.db
 *.sqlite3
 *.pyc
