@@ -20,17 +20,19 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 # JWT configuration
 JWT_SECRET = os.getenv("JWT_SECRET")
 AGL = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTE = 120
+ACCESS_TOKEN_EXPIRE_MINUTE = 30
 
 # Create access token
-def create_access_token(data: dict, expires_delta: timedelta = None):
+def create_access_token(data: dict):
     to_encode = data.copy()
-    if expires_delta:
-        expire = datetime.now(timezone.utc) + expires_delta
-    else:
-        expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTE)
+
+    # Token expire time
+    expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTE)
+
     to_encode.update({"exp": expire})
+
     encoded_jwt = jwt.encode(to_encode, JWT_SECRET, algorithm=AGL)
+    
     return encoded_jwt
 
 # Verify JWT Token

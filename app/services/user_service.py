@@ -9,11 +9,6 @@ from datetime import timedelta
 # Load environment variables from .env
 load_dotenv()
 
-# JWT configuration
-JWT_SECRET = os.getenv("JWT_SECRET")
-AGL = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTE = 120
-
 # Authentication the user
 def authenticate_user(db: Session, email: str, password: str):
     user = db.query(User).filter(User.email == email).first()
@@ -41,11 +36,7 @@ def login_user(db: Session, email: str, password: str):
     user_without_password = to_dict(user, exclude=["password"])
         
     # Create JWT token for the user
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTE)
-    access_token = create_access_token(
-            data={"sub": user.email},
-            expires_delta=access_token_expires
-        )
+    access_token = create_access_token(data={"sub": user.email})
     
     return {
         "user": user_without_password,
