@@ -6,7 +6,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 class TokenValidationMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         # Exclude root route
-        exclude_path = ["/", "/login", "/verify-token"]
+        exclude_path = ["/", "/login", "/verify-token", "/favicon.ico", "/docs", "/openapi.json"]
         if request.url.path in exclude_path:
             return await call_next(request)
         
