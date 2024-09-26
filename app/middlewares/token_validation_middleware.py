@@ -1,10 +1,16 @@
 import os
 import requests
+import logging
 from fastapi import Request, HTTPException
 from starlette.middleware.base import BaseHTTPMiddleware
 
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 class TokenValidationMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
+        logger.info(f"Request URL path: {request.url.path}")
         # Exclude root route
         exclude_path = ["/", "/login", "/verify-token", "/favicon.ico", "/docs", "/openapi.json"]
         if request.url.path in exclude_path:
