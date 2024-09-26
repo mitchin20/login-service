@@ -1,9 +1,14 @@
+import logging
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from app.routers import auth_router
 from app.routers import verify_token
 from app.middlewares.token_validation_middleware import TokenValidationMiddleware
 from app.db.postgres_database import database
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Lifespan handler: Manages the lifecycle of the app, handling startup and shutdown
 @asynccontextmanager
