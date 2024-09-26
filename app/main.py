@@ -23,9 +23,9 @@ app = FastAPI(lifespan=lifespan)
 def read_root():
     return {"message": "Login Service"}
 
-# middleware
-app.add_middleware(TokenValidationMiddleware)
-
 # routes
 app.include_router(auth_router.router)
 app.include_router(verify_token.router)
+
+# middleware
+app.add_middleware(TokenValidationMiddleware)
