@@ -8,6 +8,7 @@ test.db
 *.pyc
 
 # Docker related files
+Dockerfile
 docker-compose.yml
 docker-compose.preview.yml
 docker-compose.prod.yml
