@@ -30,7 +30,7 @@ jobs:
 
       # install vercel CLI via curl
       - name: Install Vercel CLI
-        run: curl -fsSL https://vercel.com/download | sh
+        run: npm install --global vercel
 
       # pull Vercel env information
       - name: Pull Vercel Env Information
